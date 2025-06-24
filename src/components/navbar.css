@@ -1,0 +1,20 @@
+.navbar{
+    background-color:rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    font-family: fantasy;
+}
+.categories{
+    margin-top: 20px;
+    display: flex;
+    list-style: none;
+    font-size: x-large;
+    margin: auto;
+}
+.categories li{
+    padding: 0 20px;
+}
+.carrito{
+    display: flex
+}
