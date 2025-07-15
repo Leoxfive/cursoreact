@@ -3,7 +3,6 @@
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    font-family: fantasy;
 }
 .categories{
     margin-top: 20px;
@@ -17,4 +16,11 @@
 }
 .carrito{
     display: flex
+}
+.navbar a {
+  color: black; 
+  text-decoration: none;
+}
+.navbar a:visited {
+  color: black;
 }
