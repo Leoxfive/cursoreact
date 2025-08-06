@@ -1,21 +1,25 @@
 import { useParams } from "react-router-dom";
-import useProducts from "../hooks/useProducts";
+import { useEffect, useState } from "react";
 import ItemDetail from "../components/itemdetail/ItemDetail";
-import Loading from "../components/loading/Loading";
+import { getProductById } from "../services/firebase"; // <-- asegurate que esté bien
+
 
 const ItemDetailContainer = () => {
   const { itemId } = useParams();
-  const { product, loading } = useProducts({ itemId });
+  const [producto, setProducto] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  if (loading) {
-    return (
-      <div><Loading /></div>
-    );
-  }
+  useEffect(() => {
+    getProductById(itemId)
+      .then((res) => setProducto(res))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [itemId]);
 
-  return (
-    <div className="background"><ItemDetail {...product} /></div>
-  );
+  if (loading) return <p>Cargando...</p>;
+  if (!producto) return <p>Producto no encontrado</p>;
+
+  return <ItemDetail {...producto} />;
 };
 
 export default ItemDetailContainer;

@@ -1,11 +1,19 @@
-import carrito from "../../assets/carrito-icon.png";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 
 const CartWidget = () => {
+  const { totalQuantity } = useContext(CartContext);
+  const quantity = totalQuantity();
+
   return (
-    <div className="carrito">
-      <img src={carrito} width={40} height={40} alt="Carrito de compras" />
-      <span>6</span>
-    </div>
+    <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <FaShoppingCart size={24} />
+        <span>{quantity}</span>
+      </div>
+    </Link>
   );
 };
 
